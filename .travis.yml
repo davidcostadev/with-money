@@ -1,32 +1,33 @@
 language: node_js
 dist: trusty
 install:
-  - npm ci
+- npm ci
 node_js:
-  - 10
+- 10
 deploy:
   provider: heroku
-  api_key: HEROKU_API_KEY
+  api_key:
+    secure: mQS9rNqqHi8ViYIbtAhVxqwzxM0+3SffW/7bjjUYvw8FARBLd5Ef57LPzY8vdGl2kUF+FyMXpdOI/cHon4w1frh71rWmKkZxvYG4uCJanD6ULN6PN+Uwlp5VEYg5hDjv8EBTrvaudYPE7GutZu5DGd4VKyZhccR269yS7ktn4o3m7JbVbvChM+S2w9I8KLDat+EAHUNdMZMjBwk1BN0X24xiyOs7kQivaEEi7YxdPwXi8uDEcRMNNe7dIO0qM63tLnhQ40dK8IDIK3rImXrV6fmAhuMWIwlTB6AtjFj8c+3ljLthrnFQUNHvXJAE3KUf7K12T9uPJka4w8KjD38rZJykw2wSu2xc3CutegVZVaKsCU2N16abiU1W4gTdhP3r6MwLsIGJiYV+g8artcQ1UIje2Hqq5zES/xJk5Cgb6Fj0+QuZN0prYR0A4cs5FPAlZw0cOkC113biZ+nshsBzW9j/QTrWs6eFdK6pYtF3MsU54YoPgCUPPqQbcRfnfkZQ5uT6yUsVWvwPdqAchg5odSyrtqVJlHO/sKHOrZovX5Og60jwgg90SKbfwvAuaTxeFKFfDvXmxBCQfo0/yHe9lBxjISyG/iPoVUbtJbQTymQ0l8kjufnyQQdacW6NipB3SeCLRYPaH/ePhUijJncHwxNaQc3mo31HtN4uEihEZXE=
   app: withmoney
   run:
-    - 'npm run sequelize db:seed:undo:all'
-    - 'npm run sequelize db:seed:all'
+  - npm run sequelize db:seed:undo:all
+  - npm run sequelize db:seed:all
 cache:
   directories:
-    - ~/.npm
-    - ~/.cache
+  - "~/.npm"
+  - "~/.cache"
 jobs:
   include:
-    - stage: unit
-      script: npm run unit
-      before_script:
-        - "curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter"
-        - "chmod +x ./cc-test-reporter"
-        - "./cc-test-reporter before-build"
-      after_script:
-        - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
-    - stage: e2e
-      script: npm run e2e
+  - stage: unit
+    script: npm run unit
+    before_script:
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+      > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - "./cc-test-reporter before-build"
+    after_script:
+    - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+  - stage: e2e
+    script: npm run e2e
 before_script:
-  - "cp example.env .env"
-
+- cp example.env .env
