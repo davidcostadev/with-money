@@ -4,6 +4,13 @@ install:
   - npm ci
 node_js:
   - 10
+deploy:
+  provider: heroku
+  api_key: HEROKU_API_KEY
+  app: withmoney
+  run:
+    - 'npm run sequelize db:seed:undo:all'
+    - 'npm run sequelize db:seed:all'
 cache:
   directories:
     - ~/.npm
