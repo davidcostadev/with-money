@@ -3,7 +3,7 @@ WORKDIR /usr/src/app
 
 RUN apt update
 RUN apt install netcat -y
-RUN git clone https://github.com/davidcostadev/api-withmoney.git .
+RUN git clone https://github.com/davidcostadev/mymoney.git .
 
 ADD start.sh /usr/src/app/start.sh
 
