@@ -32,4 +32,4 @@ jobs:
     - sudo mv docker-compose /usr/local/bin
     - docker-compose up -d
 before_script:
-- cp .env.example .env
+- cp example.env .env

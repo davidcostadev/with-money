@@ -10,7 +10,7 @@ services:
     ports:
       - 3306
   api:
-    build: .
+    image: davidcostadev/mymoney-api-image
     ports:
       - 3000:3000
     depends_on:

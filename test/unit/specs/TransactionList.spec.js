@@ -3,11 +3,8 @@ import VueMaterial from 'vue-material';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import TransactionList from '../../../src/pages/TransactionList';
-// import store from '../../../src/store';
-// import Vuex from 'vuex';
-import Moment from 'moment';
+import store from '../../../src/store';
 import router from '../../../src/router';
-import getters from '../../../src/store/getters';
 
 const localVue = createLocalVue();
 
@@ -75,9 +72,6 @@ jest.mock('../../../src/services/transactions', () => ({
 }));
 
 describe('TransactionList Component', () => {
-  let now;
-  let store;
-
   beforeAll(() => {
     global.localStorage = {
       getItem: jest.fn().mockReturnValue(JSON.stringify({
@@ -85,23 +79,6 @@ describe('TransactionList Component', () => {
         name: 'name',
       })),
     };
-    now = Date.now;
-    Date.now = () => 1532473578215;
-
-    store = new Vuex.Store({
-      state: {
-        current_month: Moment(),
-        state_month: Moment(),
-        state_month_str: Moment().format('MMMM YY'),
-        next_month_str: Moment().add(1, 'month').format('MMMM YY'),
-        previous_month_str: Moment().subtract(1, 'month').format('MMMM YY'),
-      },
-      getters,
-    });
-  });
-
-  afterAll(() => {
-    Date.now = now;
   });
 
   describe('Render', () => {

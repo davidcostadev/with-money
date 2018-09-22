@@ -13,8 +13,7 @@
     "test": "npm run unit && npm run e2e && codecov",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "coverage": "http-server ./coverage/lcov-report -o",
-    "build": "node build/build.js",
-    "deploy": "pm2 deploy production"
+    "build": "node build/build.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -24,7 +23,6 @@
     "expect": "^23.4.0",
     "intl": "^1.2.5",
     "moment": "^2.22.2",
-    "pm2": "^3.1.2",
     "qs": "^6.5.2",
     "querystring": "^0.2.0",
     "ramda": "^0.25.0",
